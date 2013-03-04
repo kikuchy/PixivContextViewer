@@ -1,0 +1,13 @@
+{
+	"name": "PixivContextViewer",
+	"version": "0.0.1",
+	"manifest_version": 2,
+	"description": "Pixiv",
+	"content_scripts": [
+		{
+			"matches": ["http://www.pixiv.net/*"],
+			"js": ["jquery.min.js", "model/PageCollection.js", "model/PixivContextViewerModel.js", "view/PixivContextViewerView.js", "controller/PixivContextViewerController.js"],
+			"run_at": "document_end"
+		}
+	]
+}
