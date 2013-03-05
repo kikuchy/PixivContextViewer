@@ -1,0 +1,29 @@
+<div id="pcv-window">
+  <div id="pcv-contents">
+    <div class="pcv-loading left disable">
+      <span class="pcv-loading-pixel"></span>
+      <span class="pcv-loading-pixel"></span>
+      <span class="pcv-loading-pixel"></span>
+      <span class="pcv-loading-pixel"></span>
+      <span class="pcv-loading-pixel"></span>
+    </div>
+    <ul id="pcv-list">
+{{#list}}
+      <li class="pcv-image-item">
+        <a class="pcv-work" href="{{descriptionUrl}}">
+	  <img class="pcv-thumbnail" src="{{thumbnailUrl}}" />
+	  <h1 class="pcv-title" title="{{title}}">{{title}}</h1>
+	</a>
+	<a class="pcv-user" title="{{artist}}" href="{{artistUrl}}">{{artist}}</a>
+      </li>
+{{/list}}
+    </ul>
+    <div class="pcv-loading right disable">
+      <span class="pcv-loading-pixel"></span>
+      <span class="pcv-loading-pixel"></span>
+      <span class="pcv-loading-pixel"></span>
+      <span class="pcv-loading-pixel"></span>
+      <span class="pcv-loading-pixel"></span>
+    </div>
+  </div>
+</div>

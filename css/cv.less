@@ -1,0 +1,100 @@
+@image-item-width: 150px;
+@image-item-height: 186px;
+@image-item-margin-side: 5px;
+@image-item-margin: 0px @image-item-margin-side;
+@image-item-padding-side: 10px;
+@image-item-padding: 10px @image-item-padding-side 0;
+@loading-pixel-width: 3px;
+@loading-width: @loading-pixel-width * 2 * (5 + 1);
+@loading-animation-distance: 10px;
+@-webkit-keyframes pcv-loading-animation{
+  0% {
+    top: (@image-item-height / 2);
+  }
+  5% {
+    top: (@image-item-height / 2) - @loading-animation-distance;
+  }
+  10% {
+    top: (@image-item-height / 2);
+  }
+}
+
+#pcv-window{
+  a{
+    color: #dddddd;
+  }
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  #pcv-contents{
+    width: (@image-item-width + (@image-item-margin-side * 2) + (@image-item-padding-side * 2)) * 11px + @loading-width * 2px;
+    #pcv-list{
+      float: left;
+      li.pcv-image-item{
+        float: left;
+	margin: @image-item-margin;
+	padding: @image-item-padding;
+	height: @image-item-height;
+	width: @image-item-width;
+
+	/*&:last-child{
+	  clear: left;
+	}*/
+
+	a.pcv-work{
+	  display: block;
+	  text-align: center;
+	  h1.pcv-title{
+	    font-weight: bold;
+	  }
+	  img.pcv-thumbnail{
+	    padding: 3px;
+	  }
+	  &:hover{
+	    img.pcv-thumbnail{
+	      padding: 2px;
+	      border: 1px solid rgba(255, 255, 255, 0.6);
+	    }
+	  }
+	}
+	a.pcv-user{
+	  display: block;
+	  text-align: center;
+	  margin-bottom: 8px;
+	  font-size: 11px;
+	  line-height: 17px;
+	}
+      }
+    }
+    .pcv-loading{
+      float: left;
+      width: @loading-width;
+      padding: 0 @loading-pixel-width;
+      &.left{}
+      &.right{}
+      &.disable{
+        display: none;
+      }
+      .pcv-loading-pixel{
+        display: block;
+	float: left;
+	margin-left: @loading-pixel-width;
+	background-color: #fff;
+	width: @loading-pixel-width;
+	height: 3px;
+	position: relative;
+	top: (@image-item-height / 2);
+	-webkit-animation: pcv-loading-animation 2.5s linear 0 infinite normal;
+	&:nth-child(1){ -webkit-animation-delay: 0.3s; }
+	&:nth-child(2){ -webkit-animation-delay: 0.6s; }
+	&:nth-child(3){ -webkit-animation-delay: 0.9s; }
+	&:nth-child(4){ -webkit-animation-delay: 1.2s; }
+	&:nth-child(5){ -webkit-animation-delay: 1.5s; }
+      }
+    }
+  }
+}
