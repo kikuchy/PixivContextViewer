@@ -1,10 +1,23 @@
-module("Controller");
+module("Controller", {
+  setup: function(){
+    referrer = "http://www.pixiv.net/ranking.php?mode=daily";
+  }
+});
 test("initialize", function(){
   var cont = new PixivContextViewerController();
   ok(cont, "object created");
+  ok(cont.context, "controller has context");
+  ok(cont.view, "controller has view")
+});
+test("check context", function(){
+  var cont = new PixivContextViewerController();
+  var ctx = cont._checkContext("http://www.pixiv.net/ranking.php?mode=daily");
+  ok(ctx instanceof RankingContext, "make RankingContext");
+  ctx = cont._checkContext("http://www.pixiv.net/bookmark_new_illust.php");
+  ok(ctx instanceof SearchContext, "make SearchContext");
 });
 
-module("PageCollection and Extended Classes",{
+module("RankingContext",{
 	setup: function(){
 	  
 	}
@@ -15,6 +28,9 @@ test("initialize", function(){
   ok(rc, "object created");
   ok(rc.url === rankingurl, "url setted");
   ok(rc.pageOf === 2, "pageOf setted");
+  rankingurl = "http://www.pixiv.net/ranking.php?mode=daily";
+  rc = new RankingContext(rankingurl);
+  ok(rc.pageOf === 1, "if there is no p propaty");
 });
 asyncTest("parseRankingPage", function(){
   var rankingurl = "/ranking.php?mode=rookie&p=2"
