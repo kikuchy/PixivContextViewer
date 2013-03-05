@@ -7,6 +7,7 @@
 @loading-pixel-width: 3px;
 @loading-width: @loading-pixel-width * 2 * (5 + 1);
 @loading-animation-distance: 10px;
+
 @-webkit-keyframes pcv-loading-animation{
   0% {
     top: (@image-item-height / 2);
@@ -32,6 +33,7 @@
 
   #pcv-contents{
     width: (@image-item-width + (@image-item-margin-side * 2) + (@image-item-padding-side * 2)) * 11px + @loading-width * 2px;
+
     #pcv-list{
       float: left;
       li.pcv-image-item{
