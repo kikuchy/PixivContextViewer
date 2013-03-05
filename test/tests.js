@@ -53,3 +53,37 @@ asyncTest("parseRankingPage", function(){
 	start();
   });
 });
+
+module("SearchContext",{
+	setup: function(){
+	  
+	}
+});
+test("initialize", function(){
+  var rankingurl = "http://www.pixiv.net/search.php?s_mode=s_tag&word=%E3%82%8F%E3%81%8B%E3%81%B2%E3%81%BE";
+  var rc = new SearchContext(rankingurl);
+  ok(rc, "object created");
+  ok(rc.url === rankingurl, "url setted");
+  ok(rc.pageOf === 1, "if there is no p propaty");
+});
+asyncTest("parseRankingPage", function(){
+  var rankingurl = "/search.php?s_mode=s_tag&word=%E3%82%8F%E3%81%8B%E3%81%B2%E3%81%BE";
+  var rc = new SearchContext(rankingurl);
+  $.mockjax({
+    	url: rankingurl,
+	proxy: "proxy/searchresult.html"
+  });
+  $.ajax({
+  	url: rankingurl,
+	type: "GET"
+  }).done(function(data){
+	var pages = rc._parse(data);
+	ok(pages.length === 16, "parse count");
+	ok(pages[0].title === "わかひま", "page title");
+	ok(pages[0].artist === "BIG豆腐", "page artist");
+	ok(pages[0].descriptionUrl === "/member_illust.php?mode=medium&illust_id=34010700", "page url");
+	ok(pages[0].thumbnailUrl === "http://i1.pixiv.net/img73/img/168cm55kg/34010700_s.jpg", "page thumbnal url");
+	ok(pages[0].artistUrl=== "/member_illust.php?id=2914055", "page artist url");
+	start();
+  });
+});
