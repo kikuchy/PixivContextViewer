@@ -6,6 +6,7 @@
 	"content_scripts": [
 		{
 			"matches": ["http://www.pixiv.net/*"],
+			"css": ["css/cv.css"],
 			"js": ["jquery.min.js", "model/PageCollection.js", "model/PixivContextViewerModel.js", "view/PixivContextViewerView.js", "controller/PixivContextViewerController.js"],
 			"run_at": "document_end"
 		}
