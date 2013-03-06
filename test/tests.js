@@ -87,3 +87,8 @@ asyncTest("parseRankingPage", function(){
 	start();
   });
 });
+module("View");
+test("initialize", function(){
+  var view = new PixivContextViewerView();
+  ok(view, "object created");
+});
