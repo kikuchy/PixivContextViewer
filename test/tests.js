@@ -6,8 +6,6 @@ module("Controller", {
 test("initialize", function(){
   var cont = new PixivContextViewerController();
   ok(cont, "object created");
-  ok(cont.context, "controller has context");
-  ok(cont.view, "controller has view")
 });
 test("check context", function(){
   var cont = new PixivContextViewerController();
@@ -15,6 +13,15 @@ test("check context", function(){
   ok(ctx instanceof RankingContext, "make RankingContext");
   ctx = cont._checkContext("http://www.pixiv.net/bookmark_new_illust.php");
   ok(ctx instanceof SearchContext, "make SearchContext");
+});
+
+asyncTest("fetching template text", function(){
+  $("#sandbox").append('<script id="window-template" type="text/x-handlebars-template" />');
+  $("#window-template").load("../template/viewer.html.mustache",{}, function(){
+    var cont = new PixivContextViewerController();
+    ok(cont._fetchWindowTemplate(), "fetch window template text");
+    start();
+  });
 });
 
 module("RankingContext",{
@@ -91,4 +98,12 @@ module("View");
 test("initialize", function(){
   var view = new PixivContextViewerView();
   ok(view, "object created");
+  var $windowDom = view._initDom();
+  equal($windowDom.attr("id"), "pcv-window", "top level dom is generated");
+  equal($windowDom.children().attr("id"), "pcv-content", "content dom is generated");
+  /*equal($windowDom.children().children().length, 3, "content dom has 3 children");
+  equal($windowDom.children().children(".pcv-loading.left").children().length, 5, "loading parts has 5 children");
+  equal($windowDom.children().children(".pcv-loading.right").children().length, 5, "loading parts has 5 children");
+  equal($windowDom.children().children(".pcv-list").length, 1, "main list exist");
+  */
 });
