@@ -98,9 +98,10 @@ module("View");
 test("initialize", function(){
   var view = new PixivContextViewerView();
   ok(view, "object created");
-  var $windowDom = view._initDom();
+  view._initDomHandler($("#window-template").html(), {}, function(){});
+  var $windowDom = view.$pcvWindow;
   equal($windowDom.attr("id"), "pcv-window", "top level dom is generated");
-  equal($windowDom.children().attr("id"), "pcv-content", "content dom is generated");
+  equal($windowDom.children().attr("id"), "pcv-contents", "content dom is generated");
   /*equal($windowDom.children().children().length, 3, "content dom has 3 children");
   equal($windowDom.children().children(".pcv-loading.left").children().length, 5, "loading parts has 5 children");
   equal($windowDom.children().children(".pcv-loading.right").children().length, 5, "loading parts has 5 children");
