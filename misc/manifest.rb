@@ -87,7 +87,7 @@ class ManifestContentScripts
 end
 
 class Manifest
-  @@propaties = [:name, :version, :description, :default_locale, :background_page, :minimum_chrome_version, :option_page, :permissions, :update_url]
+  @@propaties = [:name, :version, :description, :default_locale, :background_page, :minimum_chrome_version, :option_page, :permissions, :update_url, :manifest_version]
   attr_reader :mf_obj
 
   def initialize
@@ -118,21 +118,26 @@ class Manifest
   def icons(&block)
     @icons_ = block.call(ManifestIcon.new)
     @mf_obj["icons"] = @icons_.mf_obj
+    return self
   end
 
   def browser_action(&block)
     @browser_action_ = block.call(ManifestAction.new)
     @mf_obj["browser_action"] = @browser_action_.mf_obj
+    return self
   end
 
   def page_action(&block)
     @page_action_ = block.call(ManifestAction.new)
     @mf_obj["page_action"] = @page_action_.mf_obj
+    return self
   end
 
   def content_scripts(&block)
     @content_scripts_ = block.call(ManifestContentScripts.new)
-    @mf_obj["content_scripts"] = @content_scripts_.mf_obj
+    @mf_obj["content_scripts"] ||= []
+    @mf_obj["content_scripts"] << @content_scripts_.mf_obj
+    return self
   end
 
   def self.set(&block)
