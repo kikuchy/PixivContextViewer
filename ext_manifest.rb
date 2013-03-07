@@ -12,9 +12,10 @@ Manifest.set{|mf|
   mf.content_scripts {|cs|
     cs.matches ["http://www.pixiv.net/*"]
     cs.css ["css/cv.css"]
-    cs.js ["jquery.min.js", "handlebars.js", "PixivContextViewerView.js", "main_front.js"].map!{|x|
+    cs.js ["jquery.min.js", "handlebars.js", "viewer.template.js", "page.template.js", "PixivContextViewerView.js", "main_front.js"].map!{|x|
       "lib/" + x
     }
     cs.run_at ManifestContentScripts::DOCUMENT_END
   }
+  mf.permissions ["http://*.pixiv.net/"]
 }
