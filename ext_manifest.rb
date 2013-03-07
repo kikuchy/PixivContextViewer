@@ -5,7 +5,7 @@ Manifest.set{|mf|
   mf.manifest_version 2
   mf.background {|ep|
     ep.persistent true
-    ep.scripts ["jquery.min.js", "handlebars.js", "PageCollection.js", "RankingContext.js", "SearchContext.js", "PixivContextViewerController.js", "main_back.js"].map!{|x|
+    ep.scripts ["jquery.min.js", "handlebars.js", "LocalStorageHelper.js", "PageCollection.js", "RankingContext.js", "SearchContext.js", "PixivContextViewerController.js", "main_back.js"].map!{|x|
       "lib/" + x
     }
   }
