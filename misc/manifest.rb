@@ -1,6 +1,35 @@
 require 'rubygems'
 require 'json'
 
+class ManifestEventPage
+  @@propaties = [:scripts, :persistent]
+  attr_accessor :mf_obj
+  def initialize
+    @scripts = []
+    @persistent
+    @mf_obj = {}
+  end
+
+  def self.to_chrome_manifest(mi)
+    return JSON(mi)
+  end
+  def to_chrome_manifest
+    return JSON(@mf_obj)
+  end
+  def method_missing(name, *args)
+    exp = Regexp.new("^("+@@propaties.join("|")+")")
+    if (match = exp.match(name.to_s)) && (args.size == 1) then
+      @mf_obj[match[1]] = args[0]
+      self
+    elsif args.size == 0
+      @mf_obj[match[1]]
+    else
+      super
+    end
+  end
+end
+
+
 class ManifestIcon
   @@propaties = [:size_48, :size_128, :size_32]
   attr_accessor :mf_obj
@@ -137,6 +166,12 @@ class Manifest
     @content_scripts_ = block.call(ManifestContentScripts.new)
     @mf_obj["content_scripts"] ||= []
     @mf_obj["content_scripts"] << @content_scripts_.mf_obj
+    return self
+  end
+
+  def background(&block)
+    @background_ = block.call(ManifestEventPage.new)
+    @mf_obj["background"] = @background_.mf_obj
     return self
   end
 
