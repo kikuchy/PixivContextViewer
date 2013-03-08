@@ -15,7 +15,7 @@ Manifest.set{|mf|
     cs.js ["jquery.min.js", "handlebars.js", "viewer.template.js", "page.template.js", "PixivContextViewerView.js", "main_front.js"].map!{|x|
       "lib/" + x
     }
-    cs.run_at ManifestContentScripts::DOCUMENT_START
+    cs.run_at ManifestContentScripts::DOCUMENT_END
   }
   mf.permissions ["http://*.pixiv.net/"]
 }
