@@ -1,7 +1,7 @@
 Manifest.set{|mf|
   mf.name "pixiv Context Viewer"
   mf.description "pixivのイラストを便利に見られたりするかも"
-  mf.version "0.0.2"
+  mf.version "0.0.3"
   mf.manifest_version 2
   mf.background {|ep|
     ep.persistent true
