@@ -30,6 +30,14 @@
   background-color: rgba(0, 0, 0, 0.5);
   overflow-x: scroll;
   overflow-y: hidden;
+  display: block;
+  opacity: 1.0;
+  -webkit-transition: all 0.5s ease-in-out;
+
+  &.invisible{
+    bottom: -300px;
+    opacity: 0.0;
+  }
 
   #pcv-contents{
     width: (@image-item-width + (@image-item-margin-side * 2) + (@image-item-padding-side * 2)) * 11px + @loading-width * 2px;
