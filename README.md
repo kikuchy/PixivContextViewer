@@ -8,8 +8,8 @@ Build,
 
     $ rake
 
-and load 
+and load directory
 
     /path/to/this/directory/build/chrome
 
-as unpackeage extension to your GoogleChrome.
+as unpackeaged extension to your GoogleChrome.
