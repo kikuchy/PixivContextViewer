@@ -44,7 +44,7 @@ file 'mustache' => TMPL_TRG do |t|
 end
 
 rule '.template.js' => "%{template$,}Xhtml.mustache" do |t|
-	sh "ruby ./scripts/template_to_js.rb #{t.source} #{t.name} -p pcv.templates."
+	sh "ruby ./scripts/template_to_js.rb #{t.source} #{t.name} -p pcv.contextViewer.templates."
 	mv t.name, "./lib/front"
 end
 
