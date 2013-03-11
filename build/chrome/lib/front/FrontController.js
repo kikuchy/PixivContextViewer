@@ -33,7 +33,7 @@ pcv.contextViewer.FrontController = (function(){
   };
 
   FrontController.prototype.checkExecuteAsync = function(){
-    var dfd = $.Deffered();
+    var dfd = $.Deferred();
     chrome.extension.sendMessage(req("shouldBeShow", [document.referrer, document.location.href]), function(response){
       try{
         var res = chSuc(response);
@@ -46,7 +46,7 @@ pcv.contextViewer.FrontController = (function(){
   };
 
   FrontController.prototype.getInitialContextAsync = function(){
-    var dfd = $.Deffered();
+    var dfd = $.Deferred();
     chrome.extension.sendMessage(req("getInitialContextAsync"), function(response){
       try{
 	var res = chSuc(response);
@@ -59,8 +59,8 @@ pcv.contextViewer.FrontController = (function(){
   };
 
   FrontController.prototype.saveContextAsync = function(ctxUrl){
-    var dfd = $.Deffered();
-    chrome.extension.sendMessage(req("saveContextAsync", ctxUrl), function(response){
+    var dfd = $.Deferred();
+    chrome.extension.sendMessage(req("saveContext", ctxUrl), function(response){
       try{
 	var res = chSuc(response);
         dfd.resolve(res);
