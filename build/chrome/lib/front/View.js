@@ -95,7 +95,7 @@ pcv.contextViewer.View = (function($){
   };
 
   View.prototype.addContextToHead = function(context){
-    for(var i = 0, l = context.pages.length; i < l; i++){
+    for(var i = context.pages.length - 1, l = -1; i > l; i--){
       $li = this._makeArtDOM(context.pages[i]);
       $("#pcv-list", this.$pcvWindow).prepend($li);
     }
