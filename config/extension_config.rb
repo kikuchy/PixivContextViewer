@@ -1,5 +1,9 @@
 require "find"
 
+CMN_JS = ["createnamespace.js", "StorageHelper.js", "jquery.min.js", "RankingContext.js", "SearchContext.js", "ContextBuilder.js"].map{|x| "common/" + x}
+FNT_JS = ["handlebars.js", "viewer.template.js", "page.template.js", "LoadingPanel.js", "View.js", "FrontController.js", "main_front.js"].map{|x| "front/" + x}
+BCK_JS = ["BackController.js", "main_back.js"].map{|x| "back/" + x}
+
 Manifest.set{|mf|
   mf.name "pixiv Context Viewer"
   mf.description "pixivのイラストを便利に見られたりするかも"
@@ -10,17 +14,10 @@ Manifest.set{|mf|
     #ep.scripts ["jquery.min.js", "handlebars.js", "LocalStorageHelper.js", "PageCollection.js", "RankingContext.js", "SearchContext.js", "PixivContextViewerController.js", "main_back.js"].map!{|x|
     #  "lib/" + x
     #}
-    ssc = []
-    Find.find("./lib/common") {|f|
-	    ssc << f unless File.directory?(f)
+    js = (CMN_JS + BCK_JS).map!{|x|
+	"lib/" + x
     }
-    ssc.sort!
-    ssb = []
-    Find.find("./lib/back") {|f|
-	    ssb << f unless File.directory?(f)
-    }
-    ssb.sort!
-    ep.scripts ssc + ssb
+    ep.scripts js
   }
   mf.content_scripts {|cs|
     cs.matches ["http://www.pixiv.net/*"]
@@ -28,17 +25,10 @@ Manifest.set{|mf|
     #cs.js ["jquery.min.js", "handlebars.js", "viewer.template.js", "page.template.js", "PixivContextViewerView.js", "main_front.js"].map!{|x|
     #  "lib/" + x
     #}
-    ssc = []
-    Find.find("./lib/common") {|f|
-	    ssc << f unless File.directory?(f)
+    js = (CMN_JS + FNT_JS).map!{|x|
+	"lib/" + x
     }
-    ssc.sort!
-    ssf = []
-    Find.find("./lib/front") {|f|
-	    ssf << f unless File.directory?(f)
-    }
-    ssf.sort!
-    cs.js ssc + ssf
+    cs.js js
     cs.run_at ManifestContentScripts::DOCUMENT_END
   }
   mf.permissions ["http://*.pixiv.net/"]
