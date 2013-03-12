@@ -32,25 +32,12 @@ pcv.contextViewer.FrontController = (function(){
     var self = this;
     this.view = new pcv.contextViewer.View(this);
     if(this.checkExecute()){
-	$.when(this.tailContext.getPages()).done(function(pages){
+	$.when(this.tailContext.getPagesAsync()).done(function(pages){
 	  self.view.initializeView(self.tailContext);
 	});
     }
   };
 
-  // 廃止予定
-  FrontController.prototype.checkExecuteAsync = function(){
-    var dfd = $.Deferred();
-    chrome.extension.sendMessage(req("shouldBeShow", [document.referrer, document.location.href]), function(response){
-      try{
-        var res = chSuc(response);
-	dfd.resolve(res);
-      }catch(e){
-	dfd.reject(e);
-      }
-    });
-    return dfd.promise();
-  };
    FrontController.prototype.checkExecute = function(){
      var nowpage = document.location.href;
      var referrer = document.referrer;
@@ -79,59 +66,16 @@ pcv.contextViewer.FrontController = (function(){
      }
    };
 
-   /*
-  FrontController.prototype.getInitialContextAsync = function(){
-    var dfd = $.Deferred();
-    chrome.extension.sendMessage(req("getInitialContextAsync"), function(response){
-      try{
-	var res = chSuc(response);
-        dfd.resolve(res);
-      }catch(e){
-        dfd.reject(e);
-      }
-    });
-    return dfd.promise();
-  };
-  */
-
   FrontController.prototype.saveContextUrl = function(ctxUrl){
     pcv.contextViewer.sessionContextStorage("recentContextUrl", ctxUrl);
   };
 
-  /* 廃止予定
-  FrontController.prototype.saveContextAsync = function(ctxUrl){
-    var dfd = $.Deferred();
-    chrome.extension.sendMessage(req("pushContextHistory", [location.href, ctxUrl]), function(response){
-      try{
-	var res = chSuc(response);
-        dfd.resolve(res);
-      }catch(e){
-        dfd.reject(e);
-      }
-    });
-    return dfd.promise();
-  };
-  */
-
-  /*
   FrontController.prototype.addContextAsync = function(dirc){
     var dfd = $.Deferred();
     var self = this;
-    $.when(this._loadContextAsync(dirc)).done(function(ctx){
-      self[dirc + "Context"] = ctx;
-      self.view["addContextTo" + Uc(dirc)](ctx);
-      dfd.resolve(ctx);
-    }).fail(function(){dfd.reject();});
-    return dfd.promise();
-  };
-  */
-
-  FrontController.prototype.addContextAsync = function(dirc){
-    var dfd = $.Deferred();
-    var self = this;
-    var method = "get" + ((dirc === "head") ? "Prev" : "Next");
+    var method = "get" + ((dirc === "head") ? "Prev" : "Next") + "Async";
     $.when(this[dirc + "Context"][method]()).done(function(ctx){
-      $.when(ctx.getPages()).done(function(pages){
+      $.when(ctx.getPagesAsync()).done(function(pages){
         self[dirc + "Context"] = ctx;
         self.view["addContextTo" + Uc(dirc)](ctx);
         dfd.resolve(ctx);
@@ -139,23 +83,6 @@ pcv.contextViewer.FrontController = (function(){
     }).fail(function(){dfd.reject();});
     return dfd.promise();
   };
-
-  /*
-  FrontController.prototype._loadContextAsync = function(dirc){
-    var dfd = $.Deferred();
-    var method = "get" + ((dirc === "head") ? "Prev" : "Next") + "ContextAsync";
-    var arg = this[dirc + "Context"];
-    chrome.extension.sendMessage(req(method, [arg]), function(response){
-      try{
-	var res = chSuc(response);
-        dfd.resolve(res);
-      }catch(e){
-        dfd.reject(e);
-      }
-    });
-    return dfd.promise();
-  };
-  */
 
   return FrontController;
 })();
