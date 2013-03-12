@@ -30,8 +30,9 @@ pcv.contextViewer.FrontController = (function(){
     this.headContext = null;
     this.tailContext = null;
     var self = this;
-    this.view = new pcv.contextViewer.View(this);
+    this.view = null;
     if(this.checkExecute()){
+      this.view = new pcv.contextViewer.View(this);
 	$.when(this.tailContext.getPagesAsync()).done(function(pages){
 	  self.view.initializeView(self.tailContext);
 	});
