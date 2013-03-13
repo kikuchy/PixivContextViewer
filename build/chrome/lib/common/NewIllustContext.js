@@ -45,7 +45,7 @@ pcv.contextViewer.NewIllustContext = (function($, _super){
       var $artist = $("a.user", article);
       var artist = $artist.text();
       var descriptionUrl = $("a.work", article).attr("href");
-      var thumbnailUrl = $("img._thumbnail", article).attr("src");
+      var thumbnailUrl = $("img._thumbnail", article).data("src") || $("img._thumbnail", article).attr("src");
       var artistUrl = $artist.attr("href");
       var id = parseInt(descriptionUrl.match(EXP_ID)[1]);
       ret.push({
