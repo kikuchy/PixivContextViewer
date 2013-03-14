@@ -8,9 +8,9 @@ pcv.contextViewer.ContextBuilder = (function(){
     "MypixivNewIllustContext": /^http:\/\/www\.pixiv\.net\/mypixiv_new_illust\.php/,
     "NewIllustContext": /^http:\/\/www\.pixiv\.net\/new_illust\.php/,
     "MemberIllustContext": /^http:\/\/www\.pixiv\.net\/member_illust\.php\?.*id=/,
-    "MyIllustContext": /^http:\/\/www\.pixiv\.net\/member_illust\.php(\?p=)?.*$/,	// MemberIllustContextより後に置かないとマッチしちゃうのが困りもの…
+    "MyIllustContext": /^http:\/\/www\.pixiv\.net\/member_illust\.php(\?p=)?.*$/,	// MemberIllustContextより後に置かないとマッチしちゃうのが困りもの
     "MemberBookmarkContext": /^http:\/\/www\.pixiv\.net\/bookmark\.php\?.*id=/,
-    "MyBookmarkContext": /^http:\/\/www\.pixiv\.net\/bookmark\.php\?/			// MemberBookmarkContextより後に書かないとマッチしてしまう…
+    "MyBookmarkContext": /^http:\/\/www\.pixiv\.net\/bookmark\.php/			// MemberBookmarkContextより後に書かないとマッチしてしまう…
   };
   var EXP_ILLUST_DETAIL = /^http:\/\/www\.pixiv\.net\/member_illust\.php\?.*mode=/;
 
