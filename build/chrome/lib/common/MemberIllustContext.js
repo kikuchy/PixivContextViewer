@@ -39,15 +39,15 @@ pcv.contextViewer.MemberIllustContext = (function($, _super){
     this.totalPages = Math.ceil(totalCount / MAX_PAR_PAGE);
     this.hasNext = this._nextNumOfPage <= this.totalPages;
     $articles = $("li.image-item", $target);
+    var artist = $("h1.user", $target).text();
+    var artistUrl = $("a.user-link", $target).attr("href");
     ret = [];
     for(var i = 0, l = $articles.length; i < l; i++){
       var article = $articles.get(i);
       var title = $("h1.title", article).text();
       var $artist = $("a.user", article);
-      var artist = $artist.text();
       var descriptionUrl = $("a.work", article).attr("href");
       var thumbnailUrl = $("img._thumbnail", article).attr("src");
-      var artistUrl = $artist.attr("href");
       var id = parseInt(descriptionUrl.match(EXP_ID)[1]);
       ret.push({
         artist: artist,
