@@ -1,7 +1,7 @@
 require "find"
 
 CMN_JS = ["createnamespace.js", "StorageHelper.js", "jquery.min.js", "ContextBase.js", "RankingContext.js", "SearchContext.js", "BookmarkNewIllustContext.js", "MypixivNewIllustContext.js", "NewIllustContext.js", "MemberIllustContext.js", "MyIllustContext.js", "MemberBookmarkContext.js","MyBookmarkContext.js" , "ContextBuilder.js"].map{|x| "common/" + x}
-FNT_JS = ["handlebars.js", "viewer.template.js", "page.template.js", "LoadingPanel.js", "View.js", "FrontController.js", "main_front.js"].map{|x| "front/" + x}
+FNT_JS = ["handlebars.js", "viewer.template.js", "page.template.js", "ContextTrapper.js", "LoadingPanel.js", "View.js", "FrontController.js", "main_front.js"].map{|x| "front/" + x}
 BCK_JS = ["BackController.js", "main_back.js"].map{|x| "back/" + x}
 
 Manifest.set{|mf|
