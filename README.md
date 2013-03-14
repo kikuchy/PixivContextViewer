@@ -1,5 +1,7 @@
 # pixiv context viewer
 
+[visit project page](http://kikuchy.github.com/PixivContextViewer/)
+
 ## Usage
 
 !!! Now, GoogleChrome only !!!
