@@ -103,11 +103,11 @@
 	position: relative;
 	top: (@image-item-height / 2);
 	-webkit-animation: pcv-loading-animation 2.5s linear 0 infinite normal;
-	&:nth-child(1){ -webkit-animation-delay: 0.3s; }
-	&:nth-child(2){ -webkit-animation-delay: 0.6s; }
-	&:nth-child(3){ -webkit-animation-delay: 0.9s; }
-	&:nth-child(4){ -webkit-animation-delay: 1.2s; }
-	&:nth-child(5){ -webkit-animation-delay: 1.5s; }
+	&:nth-of-type(5n+1){ -webkit-animation-delay: 0.3s; }
+	&:nth-of-type(5n+2){ -webkit-animation-delay: 0.6s; }
+	&:nth-of-type(5n+3){ -webkit-animation-delay: 0.9s; }
+	&:nth-of-type(5n+4){ -webkit-animation-delay: 1.2s; }
+	&:nth-of-type(5n+5){ -webkit-animation-delay: 1.5s; }
       }
     }
   }
