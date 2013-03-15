@@ -13,6 +13,11 @@ JS_TRG = JS_SRC.map do |p|
 	"build/chrome/" + p
 end
 
+ICO_SRC = FileList["icons/*.png"]
+ICO_TRG = ICO_SRC.map do |p|
+	"build/chrome/" + p
+end
+
 CONFIG_SRC = "config/extension_config.rb"
 CONFIG_TRG = ["build/chrome/manifest.json"]
 
@@ -56,6 +61,7 @@ end
 
 task :copy_chrome_files => EXT_TARTGET + JS_SRC do
 	FileUtils.copy_entry "./lib", "./build/chrome/lib"
+	FileUtils.copy_entry "./icons", "./build/chrome/icons"
 	#FileUtils.copy_entry "./css", "./build/chrome/css"
 end
 

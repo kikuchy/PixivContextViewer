@@ -9,6 +9,10 @@ Manifest.set{|mf|
   mf.description "pixivのイラストを便利に見られたりするかも"
   mf.version "0.0.5"
   mf.manifest_version 2
+  mf.icons {|ic|
+    ic.size_48 "icons/icon48.png"
+    ic.size_128 "icons/icon128.png"
+  }
   mf.background {|ep|
     ep.persistent true
     #ep.scripts ["jquery.min.js", "handlebars.js", "LocalStorageHelper.js", "PageCollection.js", "RankingContext.js", "SearchContext.js", "PixivContextViewerController.js", "main_back.js"].map!{|x|

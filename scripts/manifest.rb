@@ -49,7 +49,7 @@ class ManifestIcon
   def method_missing(name, *args)
     exp = Regexp.new("^("+@@propaties.join("|")+")")
     if (match = exp.match(name.to_s)) && (args.size == 1) then
-      @mf_obj[match[1]] = args[0]
+      @mf_obj[match[1].sub("size_", "")] = args[0]
       self
     elsif args.size == 0
       @mf_obj[match[1]]
