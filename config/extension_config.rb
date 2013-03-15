@@ -33,7 +33,7 @@ Manifest.set{|mf|
 	"lib/" + x
     }
     cs.js js
-    cs.run_at ManifestContentScripts::DOCUMENT_END
+    cs.run_at ManifestContentScripts::DOCUMENT_START
   }
   mf.permissions ["http://*.pixiv.net/"]
 }

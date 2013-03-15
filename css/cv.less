@@ -47,6 +47,7 @@
       float: left;
       li.pcv-image-item{
         float: left;
+	position: relative;
 	margin: @image-item-margin;
 	padding: @image-item-padding;
 	height: @image-item-height;
@@ -78,6 +79,15 @@
 	  margin-bottom: 8px;
 	  font-size: 11px;
 	  line-height: 17px;
+	}
+	span.pcv-item-rank{
+          position: absolute;
+	  display: block;
+	  right: 0;
+	  bottom: -30px;
+	  text-align: right;
+	  font-size: 96px;
+	  color: rgba(0, 0, 0, 0.25);
 	}
 	&.here{
           background-color: rgba(255, 162, 81, 0.6);
