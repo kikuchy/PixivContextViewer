@@ -22,10 +22,14 @@ pcv.contextViewer.View = (function($){
   View.prototype._makeArtDOM = function(art){
     var self = this;
     var $li = $(this.artTemplate(art)).on("parentScroll", function(){
+      var $li = $(this);
       var ofs = $li.offset();
       var pos = Math.abs(ofs.left + PAGE_WIDTH / 2);
       var wWidth = self.$pcvWindow.width();
-      if(wWidth + SCR_MARGIN > pos){
+      if(wWidth + SCR_MARGIN > pos && !$li.data("loaded")){
+	var $img = $("img.pcv-thumbnail", $li);
+	$img.attr("src", $img.data("src"));
+	$li.data("loaded", true);
 	// load image
       }
     });
